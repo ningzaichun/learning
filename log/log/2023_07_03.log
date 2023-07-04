@@ -1,0 +1,3 @@
+2023-07-03 19:39:41.628482 [info] : ========== Main start ==========
+2023-07-03 19:39:41.628556 [info] : LogSys level: 2
+2023-07-03 19:39:41.628569 [info] : SqlConnPool num: 10, ThreadPool num: 2
