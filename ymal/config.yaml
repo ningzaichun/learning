@@ -1,0 +1,20 @@
+name: SafetyHatDetect 
+SOURCE:
+ source_type: rtsp_source
+ decoder_out_width: 1280 
+ decoder_out_height: 720 
+ RTSP_SOURCE:
+  rtsp_source_uris: rtsp://admin:123456@192.168.88.161:554/Streams/Channels/101
+RUNTIME:
+ algorithm: YOLOV5 
+ model_type: bmodel
+ model_in_path: /sangfor/sfrt/models/helmet_640_coco_v6.1_3output_fp32_1b.bmodel # onnx/bmodel模型文件路径
+SINK:
+ sink_type: mqtt_sink 
+ MQTT_SINK:
+  sink_ip: 192.168.88.118
+  sink_port: 1883
+  sink_original_img: false
+  mqtt_qos: 0
+ HTTP_SINK:
+  http_sink_uri: http://IP:port/endpoint

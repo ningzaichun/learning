@@ -8,6 +8,7 @@ public:
     FolderHandler(const std::string& folderPath);
     ~FolderHandler();
 
+    std::string get_home_directory();
     bool createFolder();
     bool deleteFolder();
     bool folderExists();

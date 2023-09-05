@@ -1,0 +1,31 @@
+{
+    "name":"SafetyHatDetect",
+    "source":{
+        "sourceType":"rtsp_source",
+        "decoderOutWidth":1280,
+        "decoderOutHeight":720,
+        "isVideo":true,
+        "rtspSource":{
+            "rtspSourceUris":"1.jpeg,2.jpeg"
+        }
+    },
+    "runtime":{
+        "algorithm":"YOLOV5",
+        "modelType":"bmodel",
+        "modelInPath":"/yolov5/config/helmet_640_coco_v6.1_3output_fp32_1b.bmodel",
+        "classNames":["person","hat"]
+    },
+    "sink":{
+        "sinkType":"http_sink",
+        "mqttSink":{
+            "sinkIp":"192.168.88.118",
+            "sinkPort":1883,
+            "sinkOriginalImg":false,
+            "mqttQos":0
+        },
+        "httpSink":{
+            "httpSinkUri":"http://192.168.88.49:8089/",
+            "httpSinkEndpoint":"api/v1/test"
+        }
+    }
+}

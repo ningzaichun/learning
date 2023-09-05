@@ -2,6 +2,12 @@
 #define HTTPCLIENT_H
 
 #include <string>
+#include <iostream>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <netdb.h>
+#include <unistd.h>
+#include <sstream>
 #include <vector>
 
 class HttpClient {

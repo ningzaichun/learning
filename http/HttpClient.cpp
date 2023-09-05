@@ -1,16 +1,14 @@
 #include "HttpClient.h"
-#include <iostream>
-#include <sys/socket.h>
-#include <arpa/inet.h>
-#include <netdb.h>
-#include <unistd.h>
-#include <sstream>
-#include <vector>
 
 
-HttpClient::HttpClient(const std::string& baseUrl)
-    : baseUrl(baseUrl) {}
 
+// HttpClient::HttpClient(const std::string& baseUrl)
+//     : baseUrl(baseUrl) {}
+
+HttpClient::HttpClient(const std::string& baseUrl) {
+      
+
+}
 HttpClient::~HttpClient() {}
 
 std::vector<std::string> HttpClient::splitString(const std::string& str, char delimiter) {
@@ -78,7 +76,6 @@ std::string HttpClient::sendHttpRequest(const std::string& request) {
     std::string ipAddress = parts[0];
     std::string port = parts[1];
 
-
     // 2. 连接服务器
     struct sockaddr_in addr;
     addr.sin_family = AF_INET;
@@ -102,7 +99,6 @@ std::string HttpClient::sendHttpRequest(const std::string& request) {
     while ((bytesRead = recv(sockfd, buffer, sizeof(buffer), 0)) > 0) {
         response.append(buffer, bytesRead);
     }
-
     close(sockfd);
     return response;
 }
@@ -112,12 +108,14 @@ std::string HttpClient::sendGetRequest(const std::string& endpoint, const std::s
     std::string path = getPathFromUrl(baseUrl + endpoint);
     std::string request = buildGetRequest(host, path, params);
     return sendHttpRequest(request);
-
 }
 std::string HttpClient::sendPostRequest(const std::string& endpoint, const std::string& jsonData) {
     std::string host = getHostFromUrl(baseUrl);
     std::string path = getPathFromUrl(baseUrl + endpoint);
     std::string request = buildPostRequest(host, path, jsonData);
-    return sendHttpRequest(request);
 
+    std::cout<<"host:>>>"<<host<<std::endl;
+    std::cout<<"path:>>>"<<path<<std::endl;
+    std::cout<<"request:>>>"<<request<<std::endl;
+    return sendHttpRequest(request);
 }

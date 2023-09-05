@@ -27,17 +27,14 @@ int main() {
         
         // 将差值转换为分钟
         int elapsedMinutes = std::chrono::duration_cast<std::chrono::minutes>(elapsedDuration).count();
-        
         if (elapsedMinutes >= 5) {
             // 超过了五分钟的限制时间，可以发送请求
+            std::cout << "超过了五分钟的限制时间，可以发送请求" << elapsedMinutes << " minutes..." << std::endl;
             sendGetRequest();
         } else {
             // 还未到五分钟的限制时间，等待一段时间再检查
             int remainingMinutes = 5 - elapsedMinutes;
             std::cout << "Waiting for " << remainingMinutes << " minutes..." << std::endl;
-            
-            // 等待 remainingMinutes 分钟
-            std::this_thread::sleep_for(std::chrono::minutes(remainingMinutes));
         }
     }
     
